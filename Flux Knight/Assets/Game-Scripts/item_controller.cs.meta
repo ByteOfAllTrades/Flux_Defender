@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f3196fd2c2309284a8ec3218f151663e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - coinSound: {fileID: 8300000, guid: da08c862d004257458ec82f995c4dc1d, type: 3}
+  - potionSound: {fileID: 8300000, guid: 8636137be34a58d4a8c4f761a254a9c4, type: 3}
+  - bossCoinSound: {fileID: 8300000, guid: 78c6352dbaecb66439a2d9ce9323042d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
