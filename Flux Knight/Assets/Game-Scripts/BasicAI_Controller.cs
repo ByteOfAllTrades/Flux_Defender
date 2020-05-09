@@ -6,11 +6,11 @@ public class BasicAI_Controller : MonoBehaviour
 {
     private bool dirRight = true;
     public float speed = 20f;
-    public Transform Target;
+    Transform Target;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Target = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame

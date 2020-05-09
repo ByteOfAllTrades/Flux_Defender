@@ -12,6 +12,7 @@ public class Hud_Controller : MonoBehaviour
     public Text popMsg;
     public Text levelTitle;
     public Text potionTotal;
+    public string levelName;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +25,13 @@ public class Hud_Controller : MonoBehaviour
         potionTotal = GameObject.Find("potionTotal").GetComponent<Text>();
 
         //test the functionality of the UI
-        PlayerPrefs.SetFloat("currentEnergy", 20);
-        PlayerPrefs.SetFloat("currentHealth", 20);
-        PlayerPrefs.SetString("popMsg", "Test test");
+        PlayerPrefs.SetFloat("currentEnergy", 0);
+        PlayerPrefs.SetFloat("currentHealth", 100);
+        PlayerPrefs.SetString("popMsg", "");
         PlayerPrefs.SetInt("coinTotal", 100);
         PlayerPrefs.SetString("levelTitle", "Default Dungeon");
-        PlayerPrefs.SetInt("potionTotal", 3);
+        PlayerPrefs.SetInt("potionTotal", 0);
+        PlayerPrefs.SetInt("potionLimit", 5);
     }
 
     // Update is called once per frame
@@ -40,7 +42,12 @@ public class Hud_Controller : MonoBehaviour
         energyBar.value = 0.01f * PlayerPrefs.GetFloat("currentEnergy");
         coinTotal.text = PlayerPrefs.GetInt("coinTotal").ToString();
         popMsg.text = PlayerPrefs.GetString("popMsg");
-        levelTitle.text = PlayerPrefs.GetString("levelTitle");
+        levelTitle.text = levelName;
         potionTotal.text = PlayerPrefs.GetInt("potionTotal").ToString();
+        if (PlayerPrefs.GetFloat("currentEnergy") >= 100)
+        {
+            popMsg.text = "Press E to heal the portal!";
+            
+        }
     }
 }
