@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class portal_controller : MonoBehaviour
 {
     //spawn controls
@@ -12,12 +12,14 @@ public class portal_controller : MonoBehaviour
     public float MaxSpawnDelay = 3;
     public float MinSpawnDelay = 1;
 
+    string[] levels = {"template"};
     bool canSpawn = true;
     int portalState = 1;
     int enemy;
     float spawnDelay;
     Vector2 spawnHeart;
     float enemyCount;
+    int randomLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,8 @@ public class portal_controller : MonoBehaviour
         spawnHeart = portalHeart.transform.position;
         spawnHeart.y = spawnHeart.y -3.2f;
         PlayerPrefs.SetFloat("spawnedEnemies",0);
-        PlayerPrefs.SetFloat("portalHealed", 0);        
+        PlayerPrefs.SetFloat("portalHealed", 0);   
+        PlayerPrefs.SetFloat("currentEnergy", 100);     
 
     }
 
@@ -61,6 +64,15 @@ public class portal_controller : MonoBehaviour
             portalHeart.GetComponent<SpriteRenderer>().sprite = friendlyPortalHeart;
         }
         
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player" && portalState == 0)
+        {
+            Debug.Log("warp");
+            randomLevel = UnityEngine.Random.Range(0,levels.Length -1);
+            SceneManager.LoadScene(levels[randomLevel]);
+        }
     }
     void spawnRandomEnemy()
     {

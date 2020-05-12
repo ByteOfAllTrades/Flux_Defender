@@ -43,21 +43,18 @@ public class jumping_enemy_controller : MonoBehaviour
     int coinDrop;
     float potionRoll;
     int soundBuffer;
+    int clearDeath;
     // Start is called before the first frame update
     void Start()
     {
         //remove this in prod
-        //PlayerPrefs.SetFloat("damageBuffer", 0.15f);
-        PlayerPrefs.SetFloat("playerKnockback", 100);
-        PlayerPrefs.SetFloat("playerDamage", 10);
-        PlayerPrefs.SetFloat("challengeModifier", 1);
         audioSource = GetComponent<AudioSource>();
         damageBuffer = PlayerPrefs.GetFloat("damageBuffer");
         rig = gameObject.GetComponent<Rigidbody2D>();
         health = baseHealth * PlayerPrefs.GetFloat("challengeModifier");
         damage = baseDamage * PlayerPrefs.GetFloat("challengeModifier");
         soundBuffer = 0;
-
+        clearDeath = 0;
     }
 
     // Update is called once per frame
@@ -68,6 +65,7 @@ public class jumping_enemy_controller : MonoBehaviour
             if (soundBuffer == 0)
             {
                 soundBuffer++;
+                clearDeath++;
                 StartCoroutine("Die");
             }
             
@@ -156,8 +154,11 @@ public class jumping_enemy_controller : MonoBehaviour
     IEnumerator Die()
     {
         isDead = true;
-        audioSource.clip = deathSound;
-        audioSource.Play();  
+        if (clearDeath == 0)
+        {
+            audioSource.clip = deathSound;
+            audioSource.Play();  
+        }
         yield return new WaitForSeconds(1);
         deathPos = this.transform.position;
         SpawnLoot();

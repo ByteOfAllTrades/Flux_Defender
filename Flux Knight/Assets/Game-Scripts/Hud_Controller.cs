@@ -25,13 +25,6 @@ public class Hud_Controller : MonoBehaviour
         potionTotal = GameObject.Find("potionTotal").GetComponent<Text>();
 
         //test the functionality of the UI
-        PlayerPrefs.SetFloat("currentEnergy", 0);
-        PlayerPrefs.SetFloat("currentHealth", 100);
-        PlayerPrefs.SetString("popMsg", "");
-        PlayerPrefs.SetInt("coinTotal", 100);
-        PlayerPrefs.SetString("levelTitle", "Default Dungeon");
-        PlayerPrefs.SetInt("potionTotal", 0);
-        PlayerPrefs.SetInt("potionLimit", 5);
     }
 
     // Update is called once per frame

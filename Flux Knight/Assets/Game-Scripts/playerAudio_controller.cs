@@ -8,6 +8,7 @@ public class playerAudio_controller : MonoBehaviour
     public AudioClip coinSound;
     public AudioClip potionSound;
     public AudioClip bossCoinSound;
+    public AudioClip clearSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,12 @@ public class playerAudio_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E ) && PlayerPrefs.GetFloat("currentEnergy") >= 100)
+        {
+            Debug.Log("oof");
+            audioSource.clip = clearSound;
+            audioSource.Play();
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
