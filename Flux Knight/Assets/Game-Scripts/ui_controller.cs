@@ -22,7 +22,7 @@ public class ui_controller : MonoBehaviour
         PlayerPrefs.SetFloat("currentEnergy", 0);
         PlayerPrefs.SetFloat("currentHealth", 100);
         PlayerPrefs.SetString("popMsg", "");
-        PlayerPrefs.SetInt("coinTotal", 100);
+        PlayerPrefs.SetInt("coinTotal", 0);
         PlayerPrefs.SetString("levelTitle", "Default Dungeon");
         PlayerPrefs.SetInt("potionTotal", 0);
         PlayerPrefs.SetInt("potionLimit", 5);
@@ -36,5 +36,9 @@ public class ui_controller : MonoBehaviour
         Debug.Log("Quit");
         //Uncomment before build
         //Application.Quit();
+    }
+    public void returnToMenu()
+    {
+        SceneManager.LoadScene("title_menu");
     }
 }

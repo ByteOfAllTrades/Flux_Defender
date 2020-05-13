@@ -12,7 +12,7 @@ public class portal_controller : MonoBehaviour
     public float MaxSpawnDelay = 3;
     public float MinSpawnDelay = 1;
 
-    string[] levels = {"template"};
+    string[] levels = {"cemetery"};
     bool canSpawn = true;
     int portalState = 1;
     int enemy;
@@ -76,6 +76,8 @@ public class portal_controller : MonoBehaviour
     }
     void spawnRandomEnemy()
     {
+        Debug.Log(Enemies.Length);
+        Debug.Log(enemy);
          enemy = UnityEngine.Random.Range(0,(Enemies.Length - 1));
          Instantiate(Enemies[enemy], spawnHeart, Quaternion.identity);
     }

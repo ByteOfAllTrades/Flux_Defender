@@ -9,6 +9,9 @@ public class playerAudio_controller : MonoBehaviour
     public AudioClip potionSound;
     public AudioClip bossCoinSound;
     public AudioClip clearSound;
+    public AudioClip deathSound;
+    
+    bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,16 @@ public class playerAudio_controller : MonoBehaviour
             Debug.Log("oof");
             audioSource.clip = clearSound;
             audioSource.Play();
+        }
+        if (PlayerPrefs.GetFloat("currentHealth") <= 0)
+        {
+            if (isDead == false)
+            {
+                audioSource.clip = deathSound;
+                audioSource.Play();
+                isDead = true;
+            }
+            
         }
     }
     void OnCollisionEnter2D(Collision2D col)

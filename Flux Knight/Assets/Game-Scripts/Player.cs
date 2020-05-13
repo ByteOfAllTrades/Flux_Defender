@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     public float WalkSpeed;
@@ -69,6 +69,11 @@ public class Player : MonoBehaviour {
                 StartCoroutine("displayPopup");
             }
         }
+        //Check for death
+        if (PlayerPrefs.GetFloat("currentHealth") <= 0)
+        {
+            StartCoroutine("gameOver");
+        }
     }
 
     void FixedUpdate()
@@ -134,5 +139,11 @@ public class Player : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         PlayerPrefs.SetString("popMsg", "");
+    }
+    IEnumerator gameOver()
+    {
+        PlayerPrefs.SetString("popMsg", "You Died");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("game_over");
     }
 }
